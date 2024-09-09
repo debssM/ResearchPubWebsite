@@ -1,0 +1,22 @@
+{% extends 'PaperCore/base.html' %}
+{% load static %}
+{% block title %}My Papers{% endblock title %}
+{% block extra_styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/styles/index.css' %}">
+{% endblock extra_styles %}
+{% block content %}
+<div class="jumbotron text-center mb-5">
+ <h1 class="display-4">{{ title }}</h1>
+</div>
+<div class="container text-center">
+        <input type="text" id="searchBar" class="form-control search-bar thick-border" placeholder="Search papers...">
+        <ul id="papersList" class="list-group">
+            {% for ele in paperset %}
+            <li class="list-group-item" ><a href="/paperview/{{ ele.id }}" style="font-weight: bold;">{{ ele.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock content %}
+{% block extra_scripts %}
+<script src="{% static 'assets/scripts/search.js' %}"></script>
+{% endblock extra_scripts %}

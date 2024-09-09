@@ -1,0 +1,50 @@
+{% extends 'PaperCore/base.html' %}
+{% load static %}
+{% block title %}{{ details }}{% endblock title %}
+{% block extra_styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/styles/pagedet.css' %}">
+    <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/panzoom/panzoom.css"
+          />
+{% endblock extra_styles %}
+{% block dependency_scripts %}
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/panzoom/panzoom.umd.js"></script>
+{% endblock dependency_scripts %}
+{% block content %}
+ <div class="container " style="padding-top: 120px;">
+   <div class="tile">
+        <h2 class="text-center">{{  details.title }}</h2>
+        <h3 class="text-center">{{ details.authors }}</h3>
+        <p>{{ details.description }}</p>
+        <div class="d-flex justify-content-center my-3">
+            <a href="{{ details.paper_link }}" class="btn btn-primary mx-2" target="">Read Full Paper</a>
+            <a href="{{ details.dataset_file.url }}" class="btn btn-secondary mx-2" download>Download Datasets</a>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                {% for ele in diagrams %}
+                 <div class="image-container">
+                    <div class="zoomable-image" id="myPanzoom">
+                        <img src="{{ ele.file.url }}" alt="{{ ele.short_name }}">
+                    </div>
+                    <p> {{ ele.description }} </p>
+                 {% endfor %}
+            </div>
+        </div>
+        <div class="text-container mt-4">
+            <h5>Additional Information</h5>
+            <p>{{ details.additional_details }}</p>
+        </div>
+        <div class="mt-4">
+             <button id="backToTop" class="btn btn-primary" title="Go to top">Top</button>
+        </div>
+    </div>
+</div>
+ </div>
+{% endblock content %}
+{% block extra_scripts %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static 'assets/scripts/initpanzoom.js' %}"></script>
+<script src="{% static 'assets/scripts/backtotop.js' %}"></script>
+{% endblock extra_scripts %}

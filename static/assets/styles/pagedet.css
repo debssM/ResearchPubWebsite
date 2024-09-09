@@ -1,0 +1,22 @@
+.container{
+  padding-top: 30px;
+}
+.tile {
+            border: 3px solid #ddd;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .image-container {
+            margin: 10px 0;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border: 1px solid #ddd;
+        }
+
+        .zoomable-image {
+            cursor: grab;
+            overflow: hidden;
+        }
